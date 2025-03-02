@@ -11,5 +11,5 @@ def hello_world():
 def get_summery_of_video():
     data = request.get_json()
     transcript = get_transcript(data['url'])
-    response = prompt_handler(transcript,data['prompt'])
+    response = prompt_handler(transcript)
     return jsonify("URL processesd succesfully!",response)

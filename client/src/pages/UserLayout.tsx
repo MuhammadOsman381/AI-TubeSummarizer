@@ -67,10 +67,10 @@ const UserLayout = () => {
                     <span>URL</span>
                     <input onChange={handleChange} type="text" id="url" placeholder="www.youtube.com/..." className="input input-md border-none w-full" />
                 </label>
-                <label className="floating-label w-full ">
+                {/* <label className="floating-label w-full ">
                     <span>Your Prompt</span>
                     <input onChange={handleChange} type="text" id="prompt" placeholder="eg.summerize the key points..." className="input input-md border-none w-full" />
-                </label>
+                </label> */}
                 {
                     post.loading ?
                         <LoadingButton message={"Generating"} /> :

@@ -18,14 +18,17 @@ def get_video_id(url):
 
 def get_transcript(url):
     video_id = get_video_id(url)
-    transcript = YouTubeTranscriptApi.get_transcript(video_id)
-    text = " ".join([entry['text'] for entry in transcript])
-    return text
+    print(video_id)
+    if(video_id):
+        transcript = YouTubeTranscriptApi.get_transcript(video_id)
+        text = " ".join([entry['text'] for entry in transcript])
+        return text
+    return "ok"
 
-def prompt_handler(transcript, prompt):
+def prompt_handler(transcript):
     client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
     response = client.models.generate_content(
         model="gemini-2.0-flash",
-        contents=f"user-prompt:{prompt} transcript:{transcript}"
+        contents=f"read the transcript carefully and please explain all the points 'transcript':{transcript}"
     )
     return response.text
