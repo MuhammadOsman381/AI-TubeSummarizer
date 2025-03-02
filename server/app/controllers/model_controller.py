@@ -1,4 +1,5 @@
 from flask import Blueprint, request, jsonify # type: ignore
+from services.model_services import get_transcript,prompt_handler
 
 model_bp = Blueprint("model", __name__)
 
@@ -9,5 +10,6 @@ def hello_world():
 @model_bp.route('/video-summerizer',methods=["POST"])
 def get_summery_of_video():
     data = request.get_json()
-    print(data['url'],data['prompt'])
-    return jsonify("working well!",data)
+    transcript = get_transcript(data['url'])
+    response = prompt_handler(transcript,data['prompt'])
+    return jsonify("URL processesd succesfully!",response)
